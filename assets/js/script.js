@@ -10,6 +10,22 @@ var submitBtn = document.getElementById('submit');
 var finalScore = document.getElementById('finalScore');
 var intitials = document.getElementById('initials');
 
+//create ordered list
+var optionList = document.createElement("ol");
+optionList.className = "alignLeft";
+
+// Create ordered list items
+var li1 = document.createElement("li");
+var li2 = document.createElement("li");
+var li3 = document.createElement("li");
+var li4 = document.createElement("li");
+
+optionList.appendChild(li1);
+optionList.appendChild(li2);
+optionList.appendChild(li3);
+optionList.appendChild(li4);
+
+
 var opt1 = document.createElement("button");
 var opt2 = document.createElement("button");
 var opt3 = document.createElement("button");
@@ -63,22 +79,24 @@ function start() {
     // append elemenents to questionContainer
     questionTitle.textContent = questionArray[0].question;
     questionContainer.appendChild(questionTitle);
+ 
+    questionContainer.appendChild(optionList);
 
-    questionContainer.appendChild(opt1);
+    li1.appendChild(opt1);
     opt1.textContent = questionArray[0].options[0];
     opt1.className = "btn";
 
-    questionContainer.appendChild(opt2);
+    li2.appendChild(opt2);
     opt2.textContent = questionArray[0].options[1];
     opt2.className = "btn";
 
-    questionContainer.appendChild(opt3);
+    li3.appendChild(opt3);
     opt3.textContent = questionArray[0].options[2];
     opt3.className = "btn";
 
-    questionContainer.appendChild(opt4);
+    li4.appendChild(opt4);
     opt4.textContent = questionArray[0].options[3];
-    opt4.className = "btn";
+    opt4.className = "btn"; 
 
     
 
