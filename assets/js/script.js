@@ -10,6 +10,12 @@ var submitBtn = document.getElementById('submit');
 var finalScore = document.getElementById('finalScore');
 var intitials = document.getElementById('initials');
 
+var opt1 = document.createElement("button");
+var opt2 = document.createElement("button");
+var opt3 = document.createElement("button");
+var opt4 = document.createElement("button");
+
+
 var timeInterval;
 var timeLeft = 5;
 var questionNumber = 0;
@@ -18,40 +24,71 @@ var questionArray = [
     {
         question: "Commonly used data types DO Not Include: ",
         answer: "alerts",
-        options: ['strings', 'booleans', 'alerts', 'numbers']
+        options: ['1. strings', '2. booleans', '3. alerts', '4. numbers']
         
     },
     {
         question: "The condition in an if/else statement is enclosed with________.",
         answer: "parenthesis",
-        options: ['quotes', 'curly brackets', 'parenthesis', 'square brackets']
+        options: ['1. quotes', '2 .curly brackets', '3 .parenthesis', '4. square brackets']
     },
     {
         question: "Arrays in JavaScript can be used to store_________.",
         answer: "all of the above",
-        options: ['numbers and strings', 'other arrays', 'booleans','all of the above']
+        options: ['1. numbers and strings', '2. other arrays', '3. booleans','4 .all of the above']
     },
     {
         question: "String values must be enclosed within__________.",
         answer: "quotes",
-        options: ['commas', 'curly brackets', 'quotes', 'parenthesis']
+        options: ['1. commas', '2. curly brackets', '3. quotes', '4 .parenthesis']
     },
     {
         question: "A very useful tool used during development and debugging for printing content to the debugger is:",
         answer: "console.log",
-        options: ['JavaScript','terminal/bash', 'for loops', 'console.log']
-    }
+        options: ['1. JavaScript','2. terminal/bash', '3. for loops', '4. console.log']
+    } 
 ]
 
 //---------------------------------------------start function -----------------------------------------------
 function start() {
     //hide startContainer
+    startScreen.className = "hide";
+
+    //show timer
+    timer.textContent = "Time: " + timeLeft;
 
     //show questionContainer
+    questionContainer.className = "show";
 
-    //start timer
+    // append elemenents to questionContainer
+    questionTitle.textContent = questionArray[0].question;
+    questionContainer.appendChild(questionTitle);
+
+    questionContainer.appendChild(opt1);
+    opt1.textContent = questionArray[0].options[0];
+    opt1.className = "btn";
+
+    questionContainer.appendChild(opt2);
+    opt2.textContent = questionArray[0].options[1];
+    opt2.className = "btn";
+
+    questionContainer.appendChild(opt3);
+    opt3.textContent = questionArray[0].options[2];
+    opt3.className = "btn";
+
+    questionContainer.appendChild(opt4);
+    opt4.textContent = questionArray[0].options[3];
+    opt4.className = "btn";
+
+    
+
+    
+
+  
 
     //run question funtion
+
+      //start timer
 
    timeInterval = setInterval(function(){
         if (timeLeft <= 0){
