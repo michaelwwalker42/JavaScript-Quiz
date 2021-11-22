@@ -10,6 +10,8 @@ var submitBtn = document.getElementById('submit');
 var finalScore = document.getElementById('finalScore');
 var intitials = document.getElementById('initials');
 
+
+
 //create ordered list
 var optionList = document.createElement("ol");
 optionList.className = "alignLeft";
@@ -65,6 +67,7 @@ var questionArray = [
     } 
 ]
 
+
 //---------------------------------------------start function -----------------------------------------------
 function start() {
     //hide startContainer
@@ -84,30 +87,24 @@ function start() {
 
     li1.appendChild(opt1);
     opt1.textContent = questionArray[0].options[0];
-    opt1.className = "btn";
+    opt1.className = "btnOpt";
 
     li2.appendChild(opt2);
     opt2.textContent = questionArray[0].options[1];
-    opt2.className = "btn";
+    opt2.className = "btnOpt";
 
     li3.appendChild(opt3);
     opt3.textContent = questionArray[0].options[2];
-    opt3.className = "btn";
+    opt3.className = "btnOpt";
 
     li4.appendChild(opt4);
     opt4.textContent = questionArray[0].options[3];
-    opt4.className = "btn"; 
-
-    
-
-    
-
-  
+    opt4.className = "btnOpt";   
 
     //run question funtion
+    nextQuestion();
 
       //start timer
-
    timeInterval = setInterval(function(){
         if (timeLeft <= 0){
             clearInterval(timeInterval);
@@ -118,6 +115,13 @@ function start() {
     },1000);
 }    
 //------------------------------------------End start function------------------------------------------------
+
+//-------------------------------------------nextQuestion function--------------------------------------------
+
+function nextQuestion() {
+
+};
+//------------------------------------------------------------------------------------------------------------
     // for loop
 // for (var index = 0; index < questionArray[questionNumber].options.length; index++) {
 //     var element = array[index];
@@ -144,3 +148,6 @@ function start() {
 
 // add all eventlisteners at the bottom of the JS
 startBtn.onclick = start;
+
+
+
