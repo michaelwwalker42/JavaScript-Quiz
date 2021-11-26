@@ -9,7 +9,7 @@
     font-size: 1.5rem;
 }
 
-.btn {
+.startBtn {
     background-color: rgba(11, 34, 133, 0.877);
     color: white;
     border: none;
@@ -20,7 +20,7 @@
     margin-top: 10px;
     width: 40%;
 }
-.btnOpt {
+.optBtn {
     background-color: rgba(11, 34, 133, 0.877);
     color: white;
     border: none;
@@ -29,11 +29,13 @@
     padding: 5px 15px;
     cursor: pointer;
     margin-top: 10px;
-    width: 40%;
+    width: 45%;
     text-align: left;
+    display: flex;
+    justify-content: left;
 }
 
-.btn:hover, .btnOpt:hover {
+.startBtn:hover, .optBtn:hover {
     background-color: rgba(213, 35, 248, 0.767);
 }
 #timer {
@@ -54,7 +56,6 @@
     list-style: none;
     text-align: left;    
 }
-
 
 
 
