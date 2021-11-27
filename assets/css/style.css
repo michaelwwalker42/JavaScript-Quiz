@@ -38,11 +38,6 @@
 .startBtn:hover, .optBtn:hover {
     background-color: rgba(213, 35, 248, 0.767);
 }
-#timer {
-    text-align: end;
-    margin-right: 15px;
-
-}
 
 .hide {
     display: none;

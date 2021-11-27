@@ -9,7 +9,7 @@ var gameOver = document.getElementById('gameOver');
 var submitBtn = document.getElementById('submit');
 var finalScore = document.getElementById('finalScore');
 var initials = document.getElementById('initials');
-
+var showCorrectOrWrong = document.getElementById('showCorrectOrWrong');
 
 var timeInterval;
 var timeLeft = 75;
@@ -45,7 +45,6 @@ var questionArray = [
 ]
 
 
-
 //---------------------------------------------start function -----------------------------------------------
 function start() {
     //hide startContainer
@@ -53,14 +52,14 @@ function start() {
 
     //show questionContainer
     questionContainer.className = "show";
-    nextQuestion();    
+    nextQuestion();
 
     //start timer
     timeInterval = setInterval(function () {
         timeLeft--;
         //update timer on html
         timer.textContent = timeLeft;
-
+        // if no time is left end the game              
         if (timeLeft <= 0) {
             endGame()
         }
@@ -75,44 +74,46 @@ function start() {
 
 //-------------------------------------------nextQuestion function--------------------------------------------
 function nextQuestion() {
-
+    // display the next question
     questionTitle.textContent = questionArray[questionNumber].question;
-
+    // clear out the question options
     questionOptions.innerHTML = '';
-
+    // loop through the question array
     questionArray[questionNumber].options.forEach(function (choice, i) {
-
+        // create choice buttons
         var choiceBtn = document.createElement('button');
+        // set button attributes
         choiceBtn.setAttribute('class', 'optBtn');
         choiceBtn.setAttribute('value', choice);
-
         choiceBtn.textContent = choice;
-
+        // add event listener and check if answer is right on button click
         choiceBtn.onclick = checkAnswer;
-
+        // append the choice buttons to the questionOptions element
         questionOptions.append(choiceBtn)
-
-
     })
 };
-
-
 //-----------------------------------------End nextQuestion function------------------------------------------
 
 //----------------------------------------checkAnswer function-------------------------------------------------
 function checkAnswer() {
+
+
+    // if the answer is wrong subtract 10 sectonds from time left
     if (questionArray[questionNumber].answer !== this.value) {
         timeLeft -= 10;
         timer.textContent = timeLeft;
+        showCorrectOrWrong.textContent = "Wrong!";
+    } else {
+        showCorrectOrWrong.textContent = "Correct!";
     }
     questionNumber++;
-
+    // if there are no more questions end the game
     if (questionNumber === questionArray.length) {
         endGame()
     } else {
         nextQuestion()
     }
-}
+};
 //---------------------------------------end checkAnswer function-----------------------------------------------
 
 //---------------------------------------saveScore function------------------------------------------------------
@@ -121,14 +122,11 @@ function saveScore() {
         initials: initials.value,
         score: timeLeft
     }
+    localStorage.setItem("savedScore", JSON.stringify(savedScore));
 
 
-    //localStorage.setItem
-    //localStorage.getItem
-
-
-}
-//---------------------------------------------------------------------------------------------------------------
+};
+//-----------------------------------------end saveScore function-----------------------------------------------
 
 //--------------------------------------------endGame function--------------------------------------------------
 
@@ -137,8 +135,7 @@ function endGame() {
     gameOver.className = "show";
     clearInterval(timeInterval);
     finalScore.textContent = timeLeft;
-
-}
+};
 //---------------------------------------------------------------------------------------------------------------
 
 // event listeners
@@ -146,8 +143,8 @@ function endGame() {
 startBtn.onclick = start;
 submitBtn.onclick = saveScore;
 
-
-
+    //localStorage.setItem
+    //localStorage.getItem
 
 
 
