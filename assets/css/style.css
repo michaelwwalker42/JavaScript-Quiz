@@ -56,6 +56,10 @@
     list-style: none;
     text-align: left;    
 }
+.displayAnswer {
+    border-top : 1px solid black;
+    margin: 0 50px;
+}
 
 
 

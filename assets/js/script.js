@@ -8,14 +8,11 @@ var questionOptions = document.getElementById('questionOptions');
 var gameOver = document.getElementById('gameOver');
 var submitBtn = document.getElementById('submit');
 var finalScore = document.getElementById('finalScore');
-var intitials = document.getElementById('initials');
-var opt1 = document.getElementById('opt1');
-var opt2 = document.getElementById('opt2');
-var opt3 = document.getElementById('opt3');
-var opt4 = document.getElementById('opt4');
+var initials = document.getElementById('initials');
+
 
 var timeInterval;
-var timeLeft = 5;
+var timeLeft = 75;
 var questionNumber = 0;
 
 var questionArray = [
@@ -53,73 +50,102 @@ var questionArray = [
 function start() {
     //hide startContainer
     startScreen.className = "hide";
-    //show timer
-    timer.textContent = "Time: " + timeLeft;
+
     //show questionContainer
     questionContainer.className = "show";
-    nextQuestion();
-
-
-
-    //run question function
-
+    nextQuestion();    
 
     //start timer
     timeInterval = setInterval(function () {
+        timeLeft--;
+        //update timer on html
+        timer.textContent = timeLeft;
+
         if (timeLeft <= 0) {
-            clearInterval(timeInterval);
-            timer.textContent = "Time: 0";
-        } else {
-            timer.textContent = "Time: " + timeLeft--;
+            endGame()
         }
     }, 1000);
+
+    //show timer on html
+    timer.textContent = timeLeft;
+
 }
 //------------------------------------------End start function------------------------------------------------
 
-//get question function loop through array
-//                                                   
 
 //-------------------------------------------nextQuestion function--------------------------------------------
 function nextQuestion() {
-    
+
     questionTitle.textContent = questionArray[questionNumber].question;
 
-    opt1.textContent = questionArray[questionNumber].options[0];
-    opt2.textContent = questionArray[questionNumber].options[1];
-    opt3.textContent = questionArray[questionNumber].options[2];
-    opt4.textContent = questionArray[questionNumber].options[3];
-    questionNumber++;
+    questionOptions.innerHTML = '';
+
+    questionArray[questionNumber].options.forEach(function (choice, i) {
+
+        var choiceBtn = document.createElement('button');
+        choiceBtn.setAttribute('class', 'optBtn');
+        choiceBtn.setAttribute('value', choice);
+
+        choiceBtn.textContent = choice;
+
+        choiceBtn.onclick = checkAnswer;
+
+        questionOptions.append(choiceBtn)
+
+
+    })
 };
 
-//------------------------------------------------------------------------------------------------------------
-// for loop
-// for (var index = 0; index < questionArray[questionNumber].options.length; index++) {
-//     var element = array[index];
 
-// }
+//-----------------------------------------End nextQuestion function------------------------------------------
 
-//create our question function
+//----------------------------------------checkAnswer function-------------------------------------------------
+function checkAnswer() {
+    if (questionArray[questionNumber].answer !== this.value) {
+        timeLeft -= 10;
+        timer.textContent = timeLeft;
+    }
+    questionNumber++;
 
-//update the title of the current question and display it on the page
+    if (questionNumber === questionArray.length) {
+        endGame()
+    } else {
+        nextQuestion()
+    }
+}
+//---------------------------------------end checkAnswer function-----------------------------------------------
 
-//loop over the choices in the current question
-
-//create buttons for those choices, add attributes to the buttons and a run an on click
-
-//append the buttons to the button container.
-
-//button click function
-
-//check if answer is wrong
-// make sure the question number is increased and check if you ran out of questions if you did game over. 
+//---------------------------------------saveScore function------------------------------------------------------
+function saveScore() {
+    var savedScore = {
+        initials: initials.value,
+        score: timeLeft
+    }
 
 
+    //localStorage.setItem
+    //localStorage.getItem
 
 
-// add all eventlisteners at the bottom of the JS
+}
+//---------------------------------------------------------------------------------------------------------------
 
+//--------------------------------------------endGame function--------------------------------------------------
+
+function endGame() {
+    questionContainer.className = "hide";
+    gameOver.className = "show";
+    clearInterval(timeInterval);
+    finalScore.textContent = timeLeft;
+
+}
+//---------------------------------------------------------------------------------------------------------------
+
+// event listeners
 
 startBtn.onclick = start;
+submitBtn.onclick = saveScore;
+
 
 
 
