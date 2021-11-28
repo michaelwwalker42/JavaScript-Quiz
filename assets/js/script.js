@@ -10,10 +10,14 @@ var submitBtn = document.getElementById('submit');
 var finalScore = document.getElementById('finalScore');
 var initials = document.getElementById('initials');
 var showCorrectOrWrong = document.getElementById('showCorrectOrWrong');
+var highScoresList = document.getElementById('highScoresList');
+var highScoresBtn = document.getElementById('viewHighScores');
 
-var timeInterval;
-var timeLeft = 75;
-var questionNumber = 0;
+// retrieve high scores from local storage or create empty high scores array
+var highScores = [];
+if(localStorage.getItem("highScores") !== null) {
+    highScores = JSON.parse(localStorage.getItem("highScores"));
+}
 
 var questionArray = [
     {
@@ -44,11 +48,15 @@ var questionArray = [
     }
 ]
 
+var timeInterval;
+var timeLeft = 75;
+var questionNumber = 0;
 
 //---------------------------------------------start function -----------------------------------------------
 function start() {
     //hide startContainer
     startScreen.className = "hide";
+    highScoresBtn.className = "hide";
 
     //show questionContainer
     questionContainer.className = "show";
@@ -95,8 +103,7 @@ function nextQuestion() {
 //-----------------------------------------End nextQuestion function------------------------------------------
 
 //----------------------------------------checkAnswer function-------------------------------------------------
-function checkAnswer() {
-
+function checkAnswer() {  
 
     // if the answer is wrong subtract 10 sectonds from time left
     if (questionArray[questionNumber].answer !== this.value) {
@@ -118,19 +125,38 @@ function checkAnswer() {
 
 //---------------------------------------saveScore function------------------------------------------------------
 function saveScore() {
-    var savedScore = {
+
+    var yourScore = {
         initials: initials.value,
         score: timeLeft
+    };
+
+    if (initials.value === "") {
+        alert("You must enter your initials");
+        return;
     }
-    localStorage.setItem("savedScore", JSON.stringify(savedScore));
 
-
+    //push saved score into high scores array
+    highScores.push(yourScore);
+    // sorts array highest to lowest
+    highScores = highScores.sort((a,b) => {
+        if (a.score < b.score) {
+            return 1;
+        } else {
+            return -1;
+        }
+    });
+    // keep high score list to 5 scores
+    highScores.splice(5);
+    // save high scores array to local storage
+    localStorage.setItem("highScores", JSON.stringify(highScores)); 
 };
 //-----------------------------------------end saveScore function-----------------------------------------------
 
 //--------------------------------------------endGame function--------------------------------------------------
 
 function endGame() {
+    highScoresBtn.className = "viewHighScores";
     questionContainer.className = "hide";
     gameOver.className = "show";
     clearInterval(timeInterval);
@@ -143,8 +169,9 @@ function endGame() {
 startBtn.onclick = start;
 submitBtn.onclick = saveScore;
 
-    //localStorage.setItem
-    //localStorage.getItem
+
+
+
 
 
 

@@ -10,7 +10,10 @@
 </head>
 
 <body>
-    <h3>Time: <span id="timer">0</span></h3>
+    <div class="viewHighScores" id="viewHighScores">
+        <a href="./highscores.html">View high scores</a>
+    </div>
+    <h3 class="alignRight">Time: <span id="timer">0</span></h3>
     <div class="wrapper" id="wrapper">
         <div id="startScreen">
             <h1>JavaScript Quiz</h1>
@@ -30,12 +33,13 @@
         </div>
 
         <div id="gameOver" class="hide">
-            <h2>Game Over</h2>
-            <p>Your Score: <span id="finalScore"></span></p>
+            <h2>All done!</h2>
+            <p>Your final score is <span id="finalScore"></span></p>
             <p>Enter Intitals: <input type="text" id="initials"><br>
                 <button class="startBtn" id="submit">Submit</button>
             </p>
         </div>
+    </div>
     </div>
 
     <script src="./assets/js/script.js"></script>

@@ -35,7 +35,7 @@
     justify-content: left;
 }
 
-.startBtn:hover, .optBtn:hover {
+.startBtn:hover, .optBtn:hover, .goBackBtn:hover {
     background-color: rgba(213, 35, 248, 0.767);
 }
 
@@ -54,6 +54,42 @@
 .displayAnswer {
     border-top : 1px solid black;
     margin: 0 50px;
+}
+
+.alignRight {
+    text-align: right;
+    margin-right: 10px;
+}
+.viewHighScores {
+    background-color: white;
+    border: none;
+    color: rgba(213, 35, 248, 0.767);
+    float: left;
+}
+.viewHighScores:hover {
+    cursor: pointer;
+    font-size:large;
+}
+a {
+    text-decoration: none;
+    font-size: 1.17em;
+    color: rgba(213, 35, 248, 0.767);
+}
+.goBack {
+    text-decoration: none;
+    font-size: 1.17em;
+    color: white;
+}
+.goBackBtn {
+    background-color: rgba(11, 34, 133, 0.877);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 5px 15px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
 }
 
 
