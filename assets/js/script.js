@@ -150,6 +150,9 @@ function saveScore() {
     highScores.splice(5);
     // save high scores array to local storage
     localStorage.setItem("highScores", JSON.stringify(highScores)); 
+
+    initials.textContent = "";
+    
 };
 //-----------------------------------------end saveScore function-----------------------------------------------
 

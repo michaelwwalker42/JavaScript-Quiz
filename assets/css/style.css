@@ -89,7 +89,10 @@ a {
     padding: 5px 15px;
     cursor: pointer;
     margin-top: 10px;
-    width: 100%;
+}
+li {
+    font-size: 2.5rem;
+    margin-left: 5px;
 }
 
 
