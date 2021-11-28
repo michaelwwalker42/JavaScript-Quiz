@@ -107,6 +107,7 @@ function checkAnswer() {
 
     // if the answer is wrong subtract 10 sectonds from time left
     if (questionArray[questionNumber].answer !== this.value) {
+        console.log(this);
         timeLeft -= 10;
         timer.textContent = timeLeft;
         showCorrectOrWrong.textContent = "Wrong!";
@@ -151,8 +152,7 @@ function saveScore() {
     // save high scores array to local storage
     localStorage.setItem("highScores", JSON.stringify(highScores)); 
 
-    initials.textContent = "";
-    
+        
 };
 //-----------------------------------------end saveScore function-----------------------------------------------
 

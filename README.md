@@ -1,4 +1,4 @@
-## JavaScript-Quiz
+## [Link to JavaScript-Quiz](https://michaelwwalker42.github.io/JavaScript-Quiz/)
 
 # User Story
 AS A coding boot camp student
