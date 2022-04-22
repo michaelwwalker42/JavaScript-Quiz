@@ -2,8 +2,7 @@ var highScoreContainer = document.getElementById('highScoreContainer');
 var highScoreList = document.getElementById('highScoreList');
 var clearScoresBtn = document.getElementById('clearScoresBtn');
 
-highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-console.log(highScores);
+highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
 highScoreContainer.appendChild(highScoreList);
 
@@ -14,15 +13,9 @@ for (let i = 0; i < highScores.length; i++) {
     highScoreList.appendChild(liEl);    
 }
 
-
  function clearScores(){
-    localStorage.clear();
+    localStorage.removeItem('highScores');
     highScoreList.innerHTML = "";
  };
 
-clearScoresBtn.onclick = clearScores;
-
-
-
-
-    
+clearScoresBtn.onclick = clearScores;    
